@@ -8,7 +8,7 @@ on:
 
 env:
   PYTHON_VERSION: '{{cookiecutter.python_version}}'
-  DOCKER_IMAGE: {{cookiecutter.project_slug}}
+  DOCKER_IMAGE: '{{cookiecutter.project_slug}}'
 
 jobs:
   test:
