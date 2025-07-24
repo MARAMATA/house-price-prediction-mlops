@@ -1,5 +1,4 @@
 # Dockerfile pour votre projet MLOps
-# Base: python:3.11-slim
 FROM python:3.11-slim
 
 LABEL maintainer="maramatad@gmail.com" \
@@ -26,17 +25,20 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copie du code source
+# Copie de TOUS les dossiers du projet (IMPORTANT!)
 COPY src/ ./src/
 COPY config/ ./config/
-COPY models/ ./models/
+COPY scripts/ ./scripts/
+COPY data/ ./data/
+COPY notebooks/ ./notebooks/
+COPY tests/ ./tests/
 COPY setup.py .
 
 # Installation du package
 RUN pip install -e .
 
 # Création des répertoires nécessaires
-RUN mkdir -p logs data/raw data/processed
+RUN mkdir -p logs models data/raw data/processed
 
 # Port pour l'API REST
 EXPOSE 8000
@@ -50,5 +52,5 @@ USER app
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Commande par défaut: API REST (adaptez selon votre structure)
-CMD ["python", "-m", "src"]
+# Commande par défaut: serveur HTTP
+CMD ["python", "-m", "http.server", "8000"]
