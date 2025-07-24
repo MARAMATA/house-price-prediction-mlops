@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # API REST principale
+  {{cookiecutter.project_slug}}-api:
+    build: .
+    container_name: {{cookiecutter.project_slug}}-api
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - LOG_LEVEL=INFO
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./logs:/app/logs
+      - ./models:/app/models
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - {{cookiecutter.project_slug}}-network
+
+  # Monitoring Prometheus (selon architecture MLOps)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: {{cookiecutter.project_slug}}-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    networks:
+      - {{cookiecutter.project_slug}}-network
+
+networks:
+  {{cookiecutter.project_slug}}-network:
+    driver: bridge
+
+volumes:
+  prometheus_data:

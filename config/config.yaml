@@ -1,0 +1,138 @@
+# Configuration pour dataset 4600 maisons
+project:
+  name: "House Price Prediction"
+  version: "1.0.0"
+  author: "MLOps Team"
+  dataset_info:
+    rows: 4600
+    features: 18
+    source: "https://www.kaggle.com/datasets/shree1992/housedata"
+
+# Données (colonnes exactes du dataset)
+data:
+  raw_path: "data/raw/"
+  processed_path: "data/processed/"
+  train_file: "data.csv"
+  test_file: "output.csv"
+  
+  # Colonnes du dataset réel
+  columns:
+    temporal: ["date"]
+    target: "price"
+    numerical:
+      - "bedrooms"
+      - "bathrooms"
+      - "sqft_living"
+      - "sqft_lot"
+      - "floors"
+      - "sqft_above"
+      - "sqft_basement"
+      - "yr_built"
+      - "yr_renovated"
+    categorical:
+      - "waterfront"
+      - "view"
+      - "condition"
+      - "street"
+      - "city"
+      - "statezip"
+      - "country"
+
+# Modèle de prédiction des prix
+model:
+  name: "house_price_predictor"
+  type: "regression"
+  target_column: "price"
+  
+  # Stratégies selon les exigences
+  preprocessing:
+    missing_values: "interpolation"  # Interpolation comme demandé
+    outliers: "clip"                 # Gestion des outliers
+    price_filters:
+      min_price: 50000      # Filtrer prix < 50k (erreurs de données)
+      max_price: 3000000    # Filtrer prix > 3M (outliers extrêmes)
+    feature_engineering: true       # Ajout de variables dérivées
+    use_log_transform: true        # Transformation log des surfaces
+  
+  # Modèles à explorer
+  algorithms:
+    - "LinearRegression"
+    - "Ridge"
+    - "RandomForestRegressor"
+    - "GradientBoostingRegressor" 
+    - "XGBoostRegressor"
+    - "LightGBMRegressor"
+  
+  # Hyperparamètres optimisés
+  hyperparameters:
+    RandomForest:
+      n_estimators: 200
+      max_depth: 20
+      min_samples_split: 5
+      min_samples_leaf: 2
+    GradientBoosting:
+      n_estimators: 200
+      learning_rate: 0.05
+      max_depth: 5
+      subsample: 0.8
+    XGBoost:
+      n_estimators: 300
+      learning_rate: 0.05
+      max_depth: 6
+      subsample: 0.8
+      colsample_bytree: 0.8
+    LightGBM:
+      n_estimators: 300
+      learning_rate: 0.05
+      max_depth: 8
+      num_leaves: 31
+  
+  validation:
+    method: "cross_validation"
+    cv_folds: 5
+    test_size: 0.2
+    random_state: 42
+    optimize_hyperparameters: true
+
+# API REST
+api:
+  host: "0.0.0.0"
+  port: 8000
+  title: "House Price Prediction API"
+  description: "Prédiction prix maisons - Dataset 4600 maisons"
+  version: "1.0.0"
+  
+  # Logging structuré selon exigences
+  logging:
+    format: "structured"
+    fields:
+      - "timestamp"      # timestamp de requête
+      - "features"       # entrées (features)
+      - "prediction"     # prédiction
+      - "duration"       # durée
+      - "request_id"     # pour audit
+    file: "logs/api_requests.log"
+
+# Monitoring et audit
+monitoring:
+  enable_metrics: true
+  prometheus_port: 9090
+  log_predictions: true
+  audit_trail: true
+  
+  # Alertes de performance
+  alerts:
+    prediction_error_threshold: 0.25  # Alerte si MAPE > 25%
+    response_time_threshold: 1000     # Alerte si > 1s
+
+# CI/CD
+cicd:
+  github_actions: true
+  docker_registry: "docker.io"
+  base_image: "python:3.10-slim"
+  
+# Performance cibles
+performance_targets:
+  r2_score: 0.75
+  rmse_percentage: 0.15  # RMSE < 15% du prix moyen
+  mape: 20              # Mean Absolute Percentage Error < 20%

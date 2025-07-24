@@ -1,0 +1,47 @@
+# Core ML libraries pour 4,600 maisons dataset
+pandas>=2.1.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.17.0
+scipy>=1.11.0
+
+# FastAPI pour API REST
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.5.0
+python-multipart>=0.0.6
+
+# Logging structuré (timestamp, features, prédiction, durée)
+loguru>=0.7.0
+structlog>=23.2.0
+
+# Monitoring et métriques
+prometheus-client>=0.19.0
+
+# Tests
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+httpx>=0.25.0
+
+# Environnement
+python-dotenv>=1.0.0
+
+# Sérialisation modèles
+joblib>=1.3.0
+
+# Développement
+jupyter>=1.0.0
+ipykernel>=6.27.0
+black>=23.11.0
+flake8>=6.1.0
+isort>=5.12.0
+
+# Feature engineering pour les 18 colonnes
+category-encoders>=2.6.0
+
+# Ajouter à requirements.txt
+xgboost>=1.7.0
+lightgbm>=3.3.0

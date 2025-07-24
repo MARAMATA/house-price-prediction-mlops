@@ -1,0 +1,62 @@
+2025-07-24 16:07:16 | INFO | 🏠 Début entraînement House Price Prediction
+2025-07-24 16:07:16 | INFO | Dataset cible: data/raw/data.csv
+2025-07-24 16:07:16 | INFO | Chargement du dataset réel: data/raw/data.csv
+2025-07-24 16:07:16 | INFO | Dataset chargé: 4600 maisons, 18 colonnes
+2025-07-24 16:07:16 | INFO | Préparation des données...
+2025-07-24 16:07:16 | ERROR | Erreur chargement config: while constructing a mapping
+  in "config/config.yaml", line 94, column 19
+found unhashable key
+  in "config/config.yaml", line 94, column 20
+2025-07-24 16:07:16 | INFO | Pipeline de préparation des features
+2025-07-24 16:07:16 | INFO | Nettoyage des données - Interpolation des valeurs manquantes
+2025-07-24 16:07:16 | INFO | Valeurs manquantes initiales: 0
+2025-07-24 16:07:16 | INFO | Valeurs manquantes après nettoyage: 0
+2025-07-24 16:07:16 | INFO | Outliers détectés dans price: 46
+2025-07-24 16:07:16 | INFO | Outliers clippés pour price
+2025-07-24 16:07:16 | INFO | Données nettoyées: 4600 maisons
+2025-07-24 16:07:16 | INFO | Ingénierie des features - Ajout de variables dérivées
+2025-07-24 16:07:16 | INFO | Features temporelles créées: year, month, quarter, day_of_year
+2025-07-24 16:07:16 | INFO | Feature créée: living_lot_ratio
+2025-07-24 16:07:16 | INFO | Feature créée: above_living_ratio
+2025-07-24 16:07:16 | INFO | Features créées: bed_bath_ratio, total_rooms
+2025-07-24 16:07:16 | INFO | Feature créée: house_age
+2025-07-24 16:07:16 | INFO | Features créées: is_renovated, years_since_renovation
+2025-07-24 16:07:16 | INFO | Feature créée: quality_score
+2025-07-24 16:07:16 | INFO | Features créées: total_sqft, basement_ratio
+2025-07-24 16:07:16 | INFO | Ingénierie terminée. Nouvelles dimensions: (4600, 32)
+2025-07-24 16:07:16 | INFO | Encodage des variables catégorielles
+2025-07-24 16:07:16 | INFO | Encodeur créé pour waterfront: 2 classes
+2025-07-24 16:07:16 | INFO | Encodeur créé pour view: 5 classes
+2025-07-24 16:07:16 | INFO | Encodeur créé pour condition: 5 classes
+2025-07-24 16:07:16 | INFO | Encodeur créé pour street: 4525 classes
+2025-07-24 16:07:16 | INFO | Encodeur créé pour city: 44 classes
+2025-07-24 16:07:16 | INFO | Encodeur créé pour statezip: 77 classes
+2025-07-24 16:07:16 | INFO | Encodeur créé pour country: 1 classes
+2025-07-24 16:07:16 | INFO | Normalisation des features numériques
+2025-07-24 16:07:16 | INFO | Scaler ajusté pour 22 features
+2025-07-24 16:07:16 | INFO | Préparation des features terminée
+2025-07-24 16:07:16 | INFO | Division: Train 3680, Test 920
+2025-07-24 16:07:16 | INFO | Données préparées - Train: 3680, Test: 920
+2025-07-24 16:07:16 | INFO | Features finales: 30
+2025-07-24 16:07:16 | INFO | Préprocesseurs sauvegardés: models/preprocessors.joblib
+2025-07-24 16:07:16 | INFO | Entraînement des modèles de prédiction des prix
+2025-07-24 16:07:16 | INFO | Entraînement LinearRegression...
+2025-07-24 16:07:16 | INFO | LinearRegression - RMSE: $242,575, R²: 0.4542, CV: 0.5396 (±0.0418)
+2025-07-24 16:07:16 | INFO | Entraînement RandomForest...
+2025-07-24 16:07:26 | INFO | RandomForest - RMSE: $219,657, R²: 0.5525, CV: 0.6279 (±0.0434)
+2025-07-24 16:07:26 | INFO | Entraînement GradientBoosting...
+2025-07-24 16:07:29 | INFO | GradientBoosting - RMSE: $212,703, R²: 0.5804, CV: 0.6410 (±0.0528)
+2025-07-24 16:07:29 | INFO | 🏆 Meilleur modèle: GradientBoosting
+2025-07-24 16:07:29 | INFO |    R²: 0.5804
+2025-07-24 16:07:29 | INFO |    RMSE: $212,703
+2025-07-24 16:07:29 | INFO | Modèle sauvegardé: models/best_model.joblib
+2025-07-24 16:07:29 | INFO | 📊 Rapport d'entraînement sauvegardé: models/training_report.json
+2025-07-24 16:07:29 | INFO | ============================================================
+2025-07-24 16:07:29 | INFO | 🎉 ENTRAÎNEMENT TERMINÉ AVEC SUCCÈS
+2025-07-24 16:07:29 | INFO | ============================================================
+2025-07-24 16:07:29 | INFO | 📊 Dataset: 4600 maisons avec 30 features
+2025-07-24 16:07:29 | INFO | 🏆 Meilleur modèle: GradientBoosting
+2025-07-24 16:07:29 | INFO | 📈 Performance R²: 0.5804
+2025-07-24 16:07:29 | INFO | 💰 Erreur RMSE: $212,703
+2025-07-24 16:07:29 | INFO | 💾 Modèle sauvé: models/best_model.joblib
+2025-07-24 16:07:29 | INFO | 🚀 Prêt pour déploiement API!

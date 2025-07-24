@@ -1,0 +1,6 @@
+2025-07-24 16:05:35 | INFO | 🏠 Début entraînement House Price Prediction
+2025-07-24 16:05:35 | INFO | Dataset cible: data/raw/data.csv
+2025-07-24 16:05:35 | INFO | Chargement du dataset réel: data/raw/data.csv
+2025-07-24 16:05:35 | INFO | Dataset chargé: 4600 maisons, 18 colonnes
+2025-07-24 16:05:35 | INFO | Préparation des données...
+2025-07-24 16:05:35 | ERROR | ❌ Erreur lors de l'entraînement: No module named 'src.house_price_prediction'

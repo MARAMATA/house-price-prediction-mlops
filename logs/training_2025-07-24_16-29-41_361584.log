@@ -1,0 +1,99 @@
+2025-07-24 16:29:41 | INFO | 🏠 Début entraînement House Price Prediction
+2025-07-24 16:29:41 | INFO | Dataset cible: data/raw/data.csv
+2025-07-24 16:29:41 | INFO | Chargement du dataset réel: data/raw/data.csv
+2025-07-24 16:29:41 | INFO | Dataset chargé: 4600 maisons, 18 colonnes
+2025-07-24 16:29:41 | INFO | Prix moyen: $551,963
+2025-07-24 16:29:41 | INFO | Prix médian: $460,943
+2025-07-24 16:29:41 | INFO | Prix min: $0
+2025-07-24 16:29:41 | INFO | Prix max: $26,590,000
+2025-07-24 16:29:41 | INFO | Préparation des données...
+2025-07-24 16:29:41 | ERROR | Erreur chargement config: while constructing a mapping
+  in "config/config.yaml", line 130, column 19
+found unhashable key
+  in "config/config.yaml", line 130, column 20
+2025-07-24 16:29:41 | INFO | Pipeline de préparation des features
+2025-07-24 16:29:41 | INFO | Nettoyage des données - Filtrage et interpolation
+2025-07-24 16:29:41 | INFO | Maisons filtrées (prix < $50,000 ou > $3,000,000): 60
+2025-07-24 16:29:41 | INFO | Dataset après filtrage: 4540 maisons
+2025-07-24 16:29:41 | INFO | Valeurs manquantes initiales: 0
+2025-07-24 16:29:41 | INFO | Valeurs manquantes après nettoyage: 0
+2025-07-24 16:29:41 | INFO | Outliers détectés dans bedrooms: 55
+2025-07-24 16:29:41 | INFO | Outliers clippés pour bedrooms
+2025-07-24 16:29:41 | INFO | Outliers détectés dans bathrooms: 42
+2025-07-24 16:29:41 | INFO | Outliers clippés pour bathrooms
+2025-07-24 16:29:41 | INFO | Outliers détectés dans sqft_living: 84
+2025-07-24 16:29:41 | INFO | Outliers clippés pour sqft_living
+2025-07-24 16:29:41 | INFO | Outliers détectés dans sqft_lot: 92
+2025-07-24 16:29:41 | INFO | Outliers clippés pour sqft_lot
+2025-07-24 16:29:41 | INFO | Outliers détectés dans floors: 2
+2025-07-24 16:29:41 | INFO | Outliers clippés pour floors
+2025-07-24 16:29:41 | INFO | Outliers détectés dans sqft_above: 92
+2025-07-24 16:29:41 | INFO | Outliers clippés pour sqft_above
+2025-07-24 16:29:41 | INFO | Outliers détectés dans sqft_basement: 45
+2025-07-24 16:29:41 | INFO | Outliers clippés pour sqft_basement
+2025-07-24 16:29:41 | INFO | Outliers détectés dans yr_built: 41
+2025-07-24 16:29:41 | INFO | Outliers clippés pour yr_built
+2025-07-24 16:29:41 | INFO | Données nettoyées: 4540 maisons
+2025-07-24 16:29:41 | INFO | Ingénierie des features - Ajout de variables dérivées avancées
+2025-07-24 16:29:41 | INFO | Features temporelles créées: year, month, quarter, day_of_year, season
+2025-07-24 16:29:41 | INFO | Feature créée: living_lot_ratio
+2025-07-24 16:29:41 | INFO | Feature créée: above_living_ratio
+2025-07-24 16:29:41 | INFO | Features créées: bed_bath_ratio, total_rooms, rooms_per_sqft
+2025-07-24 16:29:41 | INFO | Features créées: house_age, age_squared
+2025-07-24 16:29:41 | INFO | Features créées: is_renovated, years_since_renovation, effective_age
+2025-07-24 16:29:41 | INFO | Features créées: quality_score, high_quality
+2025-07-24 16:29:41 | INFO | Features créées: total_sqft, basement_ratio, has_basement
+2025-07-24 16:29:41 | INFO | Features créées: log_sqft_living, log_sqft_lot, log_total_sqft
+2025-07-24 16:29:41 | INFO | Features créées: city_price_median, city_popularity
+2025-07-24 16:29:41 | INFO | Feature créée: sqft_living_condition (interaction)
+2025-07-24 16:29:41 | INFO | Feature créée: sqft_age_interaction
+2025-07-24 16:29:41 | INFO | Feature créée: luxury_score
+2025-07-24 16:29:41 | INFO | Feature créée: price_per_sqft_potential
+2025-07-24 16:29:41 | INFO | Ingénierie terminée. Nouvelles dimensions: (4540, 47)
+2025-07-24 16:29:41 | INFO | Encodage des variables catégorielles
+2025-07-24 16:29:41 | INFO | Street encodé par fréquence: 4466 adresses uniques
+2025-07-24 16:29:41 | INFO | Encodeur créé pour waterfront: 2 classes
+2025-07-24 16:29:41 | INFO | Encodeur créé pour view: 5 classes
+2025-07-24 16:29:41 | INFO | Encodeur créé pour condition: 5 classes
+2025-07-24 16:29:41 | INFO | Encodeur créé pour city: 44 classes
+2025-07-24 16:29:41 | INFO | Encodeur créé pour statezip: 77 classes
+2025-07-24 16:29:41 | INFO | Encodeur créé pour country: 1 classes
+2025-07-24 16:29:41 | INFO | Normalisation des features numériques
+2025-07-24 16:29:41 | INFO | Scaler ajusté pour 39 features
+2025-07-24 16:29:41 | INFO | Préparation des features terminée. Shape finale: (4540, 47)
+2025-07-24 16:29:41 | INFO | Division: Train 3632, Test 908
+2025-07-24 16:29:41 | INFO | Features utilisées: 45
+2025-07-24 16:29:41 | INFO | Données préparées - Train: 3632, Test: 908
+2025-07-24 16:29:41 | INFO | Features finales: 45
+2025-07-24 16:29:41 | INFO | Préprocesseurs sauvegardés: models/preprocessors.joblib
+2025-07-24 16:29:41 | INFO | Entraînement des modèles de prédiction des prix
+2025-07-24 16:29:41 | INFO | Taille du dataset d'entraînement: (3632, 45)
+2025-07-24 16:29:41 | INFO | Entraînement LinearRegression...
+2025-07-24 16:29:42 | INFO | LinearRegression - R²: 0.7000, RMSE: $190,423, MAPE: 23.6%, CV: 0.6899 (±0.0447)
+2025-07-24 16:29:42 | INFO | Entraînement Ridge...
+2025-07-24 16:29:42 | INFO | Ridge - R²: 0.7005, RMSE: $190,277, MAPE: 23.5%, CV: 0.6909 (±0.0437)
+2025-07-24 16:29:42 | INFO | Entraînement RandomForest...
+2025-07-24 16:29:43 | INFO | RandomForest - R²: 0.7036, RMSE: $189,272, MAPE: 21.3%, CV: 0.6930 (±0.0342)
+2025-07-24 16:29:43 | INFO | Entraînement GradientBoosting...
+2025-07-24 16:29:45 | INFO | GradientBoosting - R²: 0.7528, RMSE: $172,843, MAPE: 20.1%, CV: 0.7299 (±0.0511)
+2025-07-24 16:29:45 | INFO | Entraînement XGBoost...
+2025-07-24 16:29:46 | INFO | XGBoost - R²: 0.7674, RMSE: $167,661, MAPE: 18.1%, CV: 0.7421 (±0.0462)
+2025-07-24 16:29:46 | INFO | Entraînement LightGBM...
+2025-07-24 16:29:50 | INFO | LightGBM - R²: 0.7715, RMSE: $166,173, MAPE: 18.2%, CV: 0.7268 (±0.0430)
+2025-07-24 16:29:50 | INFO | 🏆 Meilleur modèle: LightGBM
+2025-07-24 16:29:50 | INFO |    R²: 0.7715
+2025-07-24 16:29:50 | INFO |    RMSE: $166,173
+2025-07-24 16:29:50 | INFO |    MAPE: 18.2%
+2025-07-24 16:29:50 | INFO | Modèle sauvegardé: models/best_model.joblib
+2025-07-24 16:29:50 | INFO | 📊 Rapport d'entraînement sauvegardé: models/training_report.json
+2025-07-24 16:29:50 | INFO | ============================================================
+2025-07-24 16:29:50 | INFO | 🎉 ENTRAÎNEMENT TERMINÉ AVEC SUCCÈS
+2025-07-24 16:29:50 | INFO | ============================================================
+2025-07-24 16:29:50 | INFO | 📊 Dataset: 4600 maisons → 4540 après filtrage
+2025-07-24 16:29:50 | INFO | 📊 Features: 45 (incluant feature engineering)
+2025-07-24 16:29:50 | INFO | 🏆 Meilleur modèle: LightGBM
+2025-07-24 16:29:50 | INFO | 📈 Performance R²: 0.7715
+2025-07-24 16:29:50 | INFO | 💰 Erreur RMSE: $166,173
+2025-07-24 16:29:50 | INFO | 📊 Erreur MAPE: 18.2%
+2025-07-24 16:29:50 | INFO | 💾 Modèle sauvé: models/best_model.joblib
+2025-07-24 16:29:50 | INFO | 🚀 Prêt pour déploiement API!
