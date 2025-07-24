@@ -1,10 +1,10 @@
-# Dockerfile pour {{cookiecutter.project_name}}
-# Base: python:{{cookiecutter.python_version}}-slim (selon exigences)
-FROM python:{{cookiecutter.python_version}}-slim
+# Dockerfile pour votre projet MLOps
+# Base: python:3.11-slim
+FROM python:3.11-slim
 
-LABEL maintainer="{{cookiecutter.author_email}}" \
-      description="{{cookiecutter.description}}" \
-      version="{{cookiecutter.version}}"
+LABEL maintainer="maramatad@gmail.com" \
+      description="MLOps House Price Prediction Project" \
+      version="1.0.0"
 
 WORKDIR /app
 
@@ -50,5 +50,5 @@ USER app
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-# Commande par défaut: API REST
-CMD ["uvicorn", "src.{{cookiecutter.package_name}}.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Commande par défaut: API REST (adaptez selon votre structure)
+CMD ["python", "-m", "src"]
